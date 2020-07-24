@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:developer' as developer;
 
 void main() {
   runApp(MyApp());
@@ -26,30 +27,23 @@ class MyApp extends StatelessWidget {
   }
 
   Widget _menuItem(String title, Icon icon) {
-    return GestureDetector(
-      child: Container(
-        padding: EdgeInsets.all(8.0),
-        decoration: new BoxDecoration(
-          border: new Border(
-            bottom: BorderSide(width: 1.0, color: Colors.grey),
-          ),
-        ),
-        child: Row(
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.all(10.0),
-              child: icon,
-            ),
-            Text(
-              title,
-              style: TextStyle(color: Colors.black, fontSize: 18.0),
-            ),
-          ],
-        ),
+    return Container(
+      decoration: new BoxDecoration(
+        border: new Border(bottom: BorderSide(width: 1.0, color: Colors.grey)),
       ),
-      onTap: () {
-        print("onTap called.");
-      },
+      child: ListTile(
+        leading: icon,
+        title: Text(
+          title,
+          style: TextStyle(color: Colors.black, fontSize: 18.0),
+        ),
+        onTap: () {
+          print("onTap called.");
+        },
+        onLongPress: () {
+          print("onLongPress called.");
+        },
+      ),
     );
   }
 }
