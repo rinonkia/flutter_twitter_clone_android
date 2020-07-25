@@ -8,6 +8,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var list = ["メッセージ", "メッセージ", "メッセージ", "メッセージ"];
     return MaterialApp(
       title: 'Column & Row',
       home: Scaffold(
@@ -15,15 +16,35 @@ class MyApp extends StatelessWidget {
             title: Text('Welcome Twitter'),
             backgroundColor: darkColor,
             elevation: 1),
-        body: Container(
-          color: darkColor,
-          child: Center(
-            child: Text(
-              'happen',
-              style: TextStyle(color: textColor),
-            ),
-          ),
+        body: ListView.builder(
+          itemBuilder: (BuildContext context, int index) {
+            if (index >= list.length) {
+              list.addAll(
+                  ["message", "message", "message", "message", "message"]);
+            }
+            return _messageItem(list[index]);
+          },
         ),
+      ),
+    );
+  }
+
+  Widget _messageItem(String title) {
+    return Container(
+      decoration: new BoxDecoration(
+        border: new Border(bottom: BorderSide(width: 1.0, color: Colors.white)),
+      ),
+      child: ListTile(
+        title: Text(
+          title,
+          style: TextStyle(color: Colors.black, fontSize: 18.0),
+        ),
+        onTap: () {
+          print('onTap called.');
+        },
+        onLongPress: () {
+          print('onLongPress called.');
+        },
       ),
     );
   }
