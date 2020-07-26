@@ -35,10 +35,12 @@ class MyApp extends StatelessWidget {
         border: new Border(bottom: BorderSide(width: 1.0, color: Colors.white)),
       ),
       child: ListTile(
+        leading: Image.asset('images/default.jpg'),
         title: Text(
           title,
           style: TextStyle(color: Colors.black, fontSize: 18.0),
         ),
+        contentPadding: EdgeInsets.all(10.0),
         onTap: () {
           print('onTap called.');
         },
