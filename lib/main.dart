@@ -8,7 +8,11 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var list = ["メッセージ", "メッセージ", "メッセージ", "メッセージ"];
+    var list = [
+      "メッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージ",
+      "メッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージ",
+      "メッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージ",
+    ];
     return MaterialApp(
       title: 'Column & Row',
       home: Scaffold(
@@ -20,7 +24,11 @@ class MyApp extends StatelessWidget {
         body: ListView.builder(
           itemBuilder: (BuildContext context, int index) {
             if (index >= list.length) {
-              list.addAll(["message", "message", "message", "message"]);
+              list.addAll([
+                "messageこんにちはこんにちはこんにちはこんにちは",
+                "messageこんにちはこんにちはこんにちはこんにちは",
+                "messageこんにちはこんにちはこんにちはこんにちは",
+              ]);
             }
             return _userProfilePhoto(list[index]);
           },
@@ -34,6 +42,7 @@ class MyApp extends StatelessWidget {
       color: darkColor,
       padding: EdgeInsets.all(8.0),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Row(
@@ -42,26 +51,28 @@ class MyApp extends StatelessWidget {
                 backgroundImage: AssetImage("images/default.jpg"),
               ),
               SizedBox(width: 15.0),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    'UserName',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'UserName',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  SizedBox(width: 8.0),
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18.0,
-                    ),
-                  )
-                ],
+                    SizedBox(width: 8.0),
+                    Text(
+                      title,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18.0,
+                      ),
+                    )
+                  ],
+                ),
               ),
             ],
           ),
