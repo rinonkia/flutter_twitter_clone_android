@@ -8,6 +8,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    int _bottomNaviCurrentIndex = 0;
     var list = [
       "メッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージ",
       "メッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージ",
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
               ),
               IconButton(
                 icon: Icon(Icons.flare),
+                color: twitterColor,
                 onPressed: () {
                   print('Yoga Flame');
                 },
@@ -51,6 +53,31 @@ class MyApp extends StatelessWidget {
             }
             return _userTweetContent(list[index]);
           },
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          unselectedItemColor: Colors.grey,
+          backgroundColor: darkColor,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              title: SizedBox.shrink(),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              title: SizedBox.shrink(),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.notifications_none),
+              title: SizedBox.shrink(),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.mail),
+              title: SizedBox.shrink(),
+            ),
+          ],
+          currentIndex: _bottomNaviCurrentIndex,
+          fixedColor: twitterColor,
+          type: BottomNavigationBarType.fixed,
         ),
       ),
     );
