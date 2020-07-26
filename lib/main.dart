@@ -17,9 +17,28 @@ class MyApp extends StatelessWidget {
       title: 'Column & Row',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Welcome Twitter'),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              CircleAvatar(
+                backgroundImage: AssetImage('images/myprofile.jpg'),
+              ),
+              Center(
+                child: Image.asset(
+                  'images/twitter_blue.png',
+                  height: 20,
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.flare),
+                onPressed: () {
+                  print('Yoga Flame');
+                },
+              )
+            ],
+          ),
           backgroundColor: darkColor,
-          elevation: 1,
+          elevation: 3,
         ),
         body: ListView.builder(
           itemBuilder: (BuildContext context, int index) {
