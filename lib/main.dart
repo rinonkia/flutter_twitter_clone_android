@@ -49,14 +49,14 @@ class MyApp extends StatelessWidget {
                 "messageこんにちはこんにちはこんにちはこんにちは",
               ]);
             }
-            return _userProfilePhoto(list[index]);
+            return _userTweetContent(list[index]);
           },
         ),
       ),
     );
   }
 
-  Widget _userProfilePhoto(title) {
+  Widget _userTweetContent(String tweetText) {
     return Container(
       color: darkColor,
       padding: EdgeInsets.all(15.0),
@@ -85,7 +85,7 @@ class MyApp extends StatelessWidget {
                 ),
                 SizedBox(width: 8.0),
                 Text(
-                  title,
+                  tweetText,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18.0,
