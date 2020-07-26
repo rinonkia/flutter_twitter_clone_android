@@ -40,42 +40,41 @@ class MyApp extends StatelessWidget {
   Widget _userProfilePhoto(title) {
     return Container(
       color: darkColor,
-      padding: EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      padding: EdgeInsets.all(15.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Row(
+          Column(
             children: <Widget>[
               CircleAvatar(
                 backgroundImage: AssetImage("images/default.jpg"),
               ),
-              SizedBox(width: 15.0),
-              Flexible(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'UserName',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(width: 8.0),
-                    Text(
-                      title,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18.0,
-                      ),
-                    )
-                  ],
-                ),
-              ),
             ],
           ),
+          SizedBox(width: 10.0),
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Text(
+                  'UserName',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(width: 8.0),
+                Text(
+                  title,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18.0,
+                  ),
+                )
+              ],
+            ),
+          )
         ],
       ),
     );
