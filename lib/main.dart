@@ -64,6 +64,7 @@ class MyApp extends StatelessWidget {
         bottomNavigationBar: BottomNavigationBar(
           unselectedItemColor: Colors.grey,
           backgroundColor: darkColor,
+          iconSize: 30.0,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
