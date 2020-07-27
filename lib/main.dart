@@ -54,6 +54,13 @@ class MyApp extends StatelessWidget {
             return _userTweetContent(list[index]);
           },
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            print('FloatActionButton Pressed!');
+          },
+          child: Icon(Icons.add),
+          backgroundColor: twitterColor,
+        ),
         bottomNavigationBar: BottomNavigationBar(
           unselectedItemColor: Colors.grey,
           backgroundColor: darkColor,
