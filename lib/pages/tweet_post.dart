@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:document/colors.dart';
 
+// WANTTO: Navigatorの戻るボタンを xボタンにしたい
+// WANTTO: BottomBarを作成したい
+
 class TweetPost extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -39,17 +42,36 @@ class TweetPost extends StatelessWidget {
         backgroundColor: darkColor,
       ),
       body: Container(
-        padding: EdgeInsets.all(32.0),
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              Text('Sub'),
-              RaisedButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text('戻る'),
+        decoration: BoxDecoration(color: darkColor),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.all(10.0),
+              child: CircleAvatar(
+                backgroundImage: AssetImage('images/myprofile.jpg'),
               ),
-            ],
-          ),
+            ),
+            Flexible(
+              child: TextFormField(
+                autofocus: true,
+                expands: true,
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                decoration: InputDecoration(
+                  hintText: "いまどうしてる？",
+                  hintStyle: TextStyle(
+                    color: Colors.grey,
+                  ),
+                ),
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
