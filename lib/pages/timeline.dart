@@ -52,7 +52,7 @@ class TimeLine extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          print('FloatActionButton Pressed!');
+          Navigator.of(context).pushNamed("/tweet_post");
         },
         child: Icon(Icons.add),
         backgroundColor: twitterColor,
