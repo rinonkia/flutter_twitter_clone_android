@@ -90,40 +90,69 @@ class TimeLine extends StatelessWidget {
     return Container(
       color: darkColor,
       padding: EdgeInsets.all(15.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
         children: <Widget>[
-          Column(
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              CircleAvatar(
-                backgroundImage: AssetImage("images/default.jpg"),
+              Column(
+                children: <Widget>[
+                  CircleAvatar(
+                    backgroundImage: AssetImage("images/default.jpg"),
+                  ),
+                ],
+              ),
+              SizedBox(width: 10.0),
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Text(
+                      'UserName',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(width: 8.0),
+                    Text(
+                      tweetText,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18.0,
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              IconButton(
+                icon: Icon(Icons.chat_bubble_outline),
+                color: Colors.grey,
+                onPressed: () => print('reply'),
+              ),
+              IconButton(
+                icon: Icon(Icons.repeat),
+                color: Colors.grey,
+                onPressed: () => print('retweet'),
+              ),
+              IconButton(
+                icon: Icon(Icons.favorite_border),
+                color: Colors.grey,
+                onPressed: () => print('favorite'),
+              ),
+              IconButton(
+                icon: Icon(Icons.share),
+                color: Colors.grey,
+                onPressed: () => print('share'),
               ),
             ],
           ),
-          SizedBox(width: 10.0),
-          Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Text(
-                  'UserName',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(width: 8.0),
-                Text(
-                  tweetText,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.0,
-                  ),
-                )
-              ],
-            ),
-          )
         ],
       ),
     );
