@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:document/pages/timeline.dart';
+import 'package:document/pages/root_widget.dart';
 import 'package:document/pages/tweet_post.dart';
 
 void main() {
@@ -10,10 +10,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Column & Row',
-      home: TimeLine(),
+      title: 'Twitter Clone',
+      home: RootWidget(),
       routes: <String, WidgetBuilder>{
-        '/timeline': (BuildContext context) => TimeLine(),
+        '/root': (BuildContext context) => RootWidget(),
         '/tweet_post': (BuildContext context) => TweetPost(),
       },
     );
