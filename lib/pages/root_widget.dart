@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:document/colors.dart';
+import 'package:document/pages/root/timeline.dart';
 
 class RootWidget extends StatefulWidget {
   RootWidget({Key key}) : super(key: key);
@@ -10,7 +11,7 @@ class RootWidget extends StatefulWidget {
 class _RootWidgetState extends State<RootWidget> {
   int _bottomNaviCurrentIndex = 0;
   final _pageWidgets = [
-    PageWidget(color: Colors.white, title: 'Timeline'),
+    TimeLine(color: Colors.white, title: 'Timeline'), // replace: done 引数使ってない
     PageWidget(color: Colors.blue, title: 'Search'),
     PageWidget(color: Colors.yellow, title: 'Notice'),
     PageWidget(color: Colors.orange, title: 'DM'),
