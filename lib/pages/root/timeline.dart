@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:document/colors.dart';
+import 'package:document/core/model/tweet.dart';
 
 class TimeLine extends StatelessWidget {
   final Color color; // 使っていない
@@ -9,10 +10,22 @@ class TimeLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var list = [
-      "メッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージ",
-      "メッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージ",
-      "メッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージ",
+    List<Tweet> list = [
+      Tweet(
+        userName: 'akinori',
+        body: 'メッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージ',
+        pictureUrl: 'images/myprofile.jpg',
+      ),
+      Tweet(
+        userName: 'tomohiro',
+        body: 'こんにちは',
+        pictureUrl: 'images/default.jpg',
+      ),
+      Tweet(
+        userName: 'daisuke',
+        body: 'こんばんはこんばんはこんばんはこんばんはこんばんはこんばんはこんばんはこんばんは',
+        pictureUrl: 'images/twitter_blue.png',
+      ),
     ];
 
     return Scaffold(
@@ -20,9 +33,10 @@ class TimeLine extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           if (index >= list.length) {
             list.addAll([
-              "messageこんにちはこんにちはこんにちはこんにちは",
-              "messageこんにちはこんにちはこんにちはこんにちは",
-              "messageこんにちはこんにちはこんにちはこんにちは",
+              Tweet(
+                  userName: 'hogehoge',
+                  body: 'hugahuga',
+                  pictureUrl: 'images/twitter_blue.png'),
             ]);
           }
           return _userTweetContent(list[index]);
@@ -35,11 +49,10 @@ class TimeLine extends StatelessWidget {
         child: Icon(Icons.add),
         backgroundColor: twitterColor,
       ),
-      // body: _pageWidgets.elementAt(_bottomNaviCurrentIndex),
     );
   }
 
-  Widget _userTweetContent(String tweetText) {
+  Widget _userTweetContent(Tweet tweet) {
     return Container(
       color: darkColor,
       padding: EdgeInsets.all(15.0),
@@ -51,7 +64,7 @@ class TimeLine extends StatelessWidget {
               Column(
                 children: <Widget>[
                   CircleAvatar(
-                    backgroundImage: AssetImage("images/default.jpg"),
+                    backgroundImage: AssetImage(tweet.getrPictureUrl),
                   ),
                 ],
               ),
@@ -61,7 +74,7 @@ class TimeLine extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     Text(
-                      'UserName',
+                      tweet.getUserName,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18.0,
@@ -70,7 +83,7 @@ class TimeLine extends StatelessWidget {
                     ),
                     SizedBox(width: 8.0),
                     Text(
-                      tweetText,
+                      tweet.getrBody,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18.0,
