@@ -46,6 +46,7 @@ class _RootWidgetState extends State<RootWidget> {
         elevation: 3,
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'btn',
         onPressed: () {
           Navigator.of(context).pushNamed("/tweet_post");
         },
