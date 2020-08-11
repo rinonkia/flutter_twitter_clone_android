@@ -31,6 +31,7 @@ class TweetDraftPage extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(color: darkColor),
         child: ListView.builder(
+          itemCount: list.length,
           itemBuilder: (BuildContext context, int index) {
             return _tweetDraftContent(list[index]);
           },
