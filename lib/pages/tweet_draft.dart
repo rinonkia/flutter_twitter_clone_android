@@ -26,6 +26,7 @@ class TweetDraftPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('下書き'),
+        backgroundColor: darkColor,
       ),
       backgroundColor: darkColor,
       body: Container(
