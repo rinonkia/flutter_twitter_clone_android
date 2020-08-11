@@ -13,7 +13,9 @@ class TweetPost extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             GestureDetector(
-              onTap: () => print("下書き tapped!"),
+              onTap: () {
+                Navigator.of(context).pushNamed("/tweet_draft");
+              },
               child: Text(
                 "下書き",
                 style: TextStyle(
