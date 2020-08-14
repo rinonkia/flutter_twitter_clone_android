@@ -43,14 +43,22 @@ class TweetDraftPage extends StatelessWidget {
 
   Widget _tweetDraftContent(TweetDraft tweet) {
     return Container(
-      color: darkColor,
       padding: EdgeInsets.all(15.0),
-      child: Text(
-        tweet.body,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 18.0,
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: Colors.grey),
         ),
+      ),
+      child: ListTile(
+        title: Text(
+          tweet.body,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18.0,
+          ),
+        ),
+        onTap: () => print('select text'),
+        onLongPress: () => print('arise popup'),
       ),
     );
   }
