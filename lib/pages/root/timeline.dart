@@ -34,9 +34,10 @@ class TimeLine extends StatelessWidget {
           if (index >= list.length) {
             list.addAll([
               Tweet(
-                  userName: 'hogehoge',
-                  body: 'hugahuga',
-                  pictureUrl: 'images/twitter_blue.png'),
+                userName: 'hogehoge',
+                body: 'hugahuga',
+                pictureUrl: 'images/twitter_blue.png',
+              ),
             ]);
           }
           return _userTweetContent(list[index]);
