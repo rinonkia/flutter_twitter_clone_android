@@ -102,16 +102,8 @@ class TimeLine extends StatelessWidget {
                 color: Colors.grey,
                 onPressed: () => print('reply'),
               ),
-              IconButton(
-                icon: Icon(Icons.repeat),
-                color: Colors.grey,
-                onPressed: () => print('retweet'),
-              ),
-              IconButton(
-                icon: Icon(Icons.favorite_border),
-                color: Colors.grey,
-                onPressed: () => print('favorite'),
-              ),
+              RetweetIconButton(),
+              TweetLikeIconButton(),
               IconButton(
                 icon: Icon(Icons.share),
                 color: Colors.grey,
@@ -123,4 +115,60 @@ class TimeLine extends StatelessWidget {
       ),
     );
   }
+}
+
+class _TweetLikeIconButtonState extends State<TweetLikeIconButton> {
+  bool alreadyLiked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(alreadyLiked ? Icons.favorite : Icons.favorite_border),
+      color: alreadyLiked ? Colors.pink : Colors.grey,
+      onPressed: () {
+        setState(
+          () {
+            if (alreadyLiked) {
+              alreadyLiked = false;
+            } else {
+              alreadyLiked = true;
+            }
+          },
+        );
+      },
+    );
+  }
+}
+
+class TweetLikeIconButton extends StatefulWidget {
+  @override
+  State<TweetLikeIconButton> createState() => _TweetLikeIconButtonState();
+}
+
+class _RetweetIconButtonState extends State<RetweetIconButton> {
+  bool alreadyRetweet = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.repeat),
+      color: alreadyRetweet ? Colors.lightGreen : Colors.grey,
+      onPressed: () {
+        setState(
+          () {
+            if (alreadyRetweet) {
+              alreadyRetweet = false;
+            } else {
+              alreadyRetweet = true;
+            }
+          },
+        );
+      },
+    );
+  }
+}
+
+class RetweetIconButton extends StatefulWidget {
+  @override
+  State<RetweetIconButton> createState() => _RetweetIconButtonState();
 }
