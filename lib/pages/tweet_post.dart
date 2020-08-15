@@ -4,10 +4,20 @@ import 'package:document/colors.dart';
 // WANTTO: Navigatorの戻るボタンを xボタンにしたい
 // WANTTO: BottomBarを作成したい
 
-class TweetPost extends StatelessWidget {
+class TweetPost extends StatefulWidget {
+  TweetPost({Key key}) : super(key: key);
+
+  @override
+  State<TweetPost> createState() => TweetPostState();
+}
+
+class TweetPostState extends State<TweetPost> {
+  final key = GlobalKey<TweetPostFormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: key,
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -37,7 +47,9 @@ class TweetPost extends StatelessWidget {
               ),
               color: twitterColor,
               shape: StadiumBorder(),
-              onPressed: () {},
+              onPressed: () {
+                key.currentState.postTweetForm(); // nullから呼ばれてしまう
+              },
             ),
           ],
         ),
@@ -48,7 +60,7 @@ class TweetPost extends StatelessWidget {
   }
 }
 
-class _TweetPostFormState extends State<TweetPostForm> {
+class TweetPostFormState extends State<TweetPostForm> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -89,9 +101,18 @@ class _TweetPostFormState extends State<TweetPostForm> {
       ),
     );
   }
+
+  void postTweetForm() {
+    Scaffold.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Processing Data'),
+      ),
+    );
+  }
 }
 
 class TweetPostForm extends StatefulWidget {
+  TweetPostForm({Key key}) : super(key: key);
   @override
-  State<TweetPostForm> createState() => _TweetPostFormState();
+  State<TweetPostForm> createState() => TweetPostFormState();
 }
