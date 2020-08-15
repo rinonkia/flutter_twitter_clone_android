@@ -43,7 +43,18 @@ class TweetPost extends StatelessWidget {
         ),
         backgroundColor: darkColor,
       ),
-      body: Container(
+      body: TweetPostForm(),
+    );
+  }
+}
+
+class _TweetPostFormState extends State<TweetPostForm> {
+  final _formKey = GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Container(
         decoration: BoxDecoration(color: darkColor),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,4 +89,9 @@ class TweetPost extends StatelessWidget {
       ),
     );
   }
+}
+
+class TweetPostForm extends StatefulWidget {
+  @override
+  State<TweetPostForm> createState() => _TweetPostFormState();
 }
