@@ -61,19 +61,15 @@ class _RootWidgetState extends State<RootWidget> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: SizedBox.shrink(),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            title: SizedBox.shrink(),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications_none),
-            title: SizedBox.shrink(),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.mail),
-            title: SizedBox.shrink(),
           ),
         ],
         currentIndex: _bottomNaviCurrentIndex,

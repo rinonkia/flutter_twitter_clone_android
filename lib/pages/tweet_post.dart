@@ -103,11 +103,7 @@ class TweetPostFormState extends State<TweetPostForm> {
   }
 
   void postTweetForm() {
-    Scaffold.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Processing Data'),
-      ),
-    );
+    print('tweet');
   }
 }
 
