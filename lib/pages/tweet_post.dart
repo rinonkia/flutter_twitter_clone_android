@@ -12,12 +12,9 @@ class TweetPost extends StatefulWidget {
 }
 
 class TweetPostState extends State<TweetPost> {
-  final key = GlobalKey<TweetPostFormState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: key,
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -48,7 +45,8 @@ class TweetPostState extends State<TweetPost> {
               color: twitterColor,
               shape: StadiumBorder(),
               onPressed: () {
-                key.currentState.postTweetForm(); // nullから呼ばれてしまう
+                // 本来であればkey.currentState.postTweetForm()で呼び出すべき？
+                //_formKey.currentState.postTweetForm();
               },
             ),
           ],
@@ -61,7 +59,8 @@ class TweetPostState extends State<TweetPost> {
 }
 
 class TweetPostFormState extends State<TweetPostForm> {
-  final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<TweetPostFormState>();
+  final _tweetEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -79,6 +78,7 @@ class TweetPostFormState extends State<TweetPostForm> {
             ),
             Flexible(
               child: TextFormField(
+                controller: _tweetEditingController,
                 autofocus: true,
                 expands: true,
                 keyboardType: TextInputType.multiline,
@@ -96,6 +96,24 @@ class TweetPostFormState extends State<TweetPostForm> {
                 ),
               ),
             ),
+            // 仮置のボタン
+            RaisedButton(
+              child: Text(
+                "ツイートする(仮)",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              color: twitterColor,
+              shape: StadiumBorder(),
+              onPressed: () {
+                Scaffold.of(context).showSnackBar(
+                  SnackBar(content: Text(_tweetEditingController.text)),
+                );
+              },
+            ),
           ],
         ),
       ),
@@ -103,12 +121,17 @@ class TweetPostFormState extends State<TweetPostForm> {
   }
 
   void postTweetForm() {
-    print('tweet');
+    Scaffold.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Processing Data'),
+      ),
+    );
   }
 }
 
 class TweetPostForm extends StatefulWidget {
   TweetPostForm({Key key}) : super(key: key);
+
   @override
   State<TweetPostForm> createState() => TweetPostFormState();
 }
