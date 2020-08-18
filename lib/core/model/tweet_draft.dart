@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 class TweetDraft {
-  const TweetDraft({
+  TweetDraft({
     @required this.id,
     @required this.body,
     @required this.createdAt,
@@ -9,11 +9,28 @@ class TweetDraft {
         assert(body != null),
         assert(createdAt != null);
 
-  final int id;
-  final String body;
-  final String createdAt;
+  int id;
+  String body;
+  String createdAt;
 
   int get getId => id;
   String get getBody => '$body';
   String get getCreatedAt => '$createdAt';
+
+  TweetDraft.newDraft(String text) {
+    body = text;
+    createdAt = '2020-08-13 00:00:00';
+  }
+
+  Map<String, dynamic> toMap() => {
+        "id": id,
+        "title": body,
+        "created_at": createdAt,
+      };
+
+  factory TweetDraft.fromMap(Map<String, dynamic> json) => TweetDraft(
+        id: json["id"],
+        body: json["body"],
+        createdAt: json["createdAt"],
+      );
 }
