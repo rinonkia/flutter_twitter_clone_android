@@ -12,6 +12,7 @@ class TweetPost extends StatefulWidget {
 }
 
 class TweetPostState extends State<TweetPost> {
+  final _tweetEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,93 +46,49 @@ class TweetPostState extends State<TweetPost> {
               color: twitterColor,
               shape: StadiumBorder(),
               onPressed: () {
-                // 本来であればkey.currentState.postTweetForm()で呼び出すべき？
-                //_formKey.currentState.postTweetForm();
+                print(_tweetEditingController.text);
               },
             ),
           ],
         ),
         backgroundColor: darkColor,
       ),
-      body: TweetPostForm(),
-    );
-  }
-}
-
-class TweetPostFormState extends State<TweetPostForm> {
-  final _formKey = GlobalKey<TweetPostFormState>();
-  final _tweetEditingController = TextEditingController();
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Container(
-        decoration: BoxDecoration(color: darkColor),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(10.0),
-              child: CircleAvatar(
-                backgroundImage: AssetImage('images/myprofile.jpg'),
+      body: Form(
+        child: Container(
+          decoration: BoxDecoration(color: darkColor),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.all(10.0),
+                child: CircleAvatar(
+                  backgroundImage: AssetImage('images/myprofile.jpg'),
+                ),
               ),
-            ),
-            Flexible(
-              child: TextFormField(
-                controller: _tweetEditingController,
-                autofocus: true,
-                expands: true,
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                decoration: InputDecoration(
-                  hintText: "いまどうしてる？",
-                  hintStyle: TextStyle(
-                    color: Colors.grey,
+              Flexible(
+                child: TextFormField(
+                  controller: _tweetEditingController,
+                  autofocus: true,
+                  expands: true,
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                  decoration: InputDecoration(
+                    hintText: "いまどうしてる？",
+                    hintStyle: TextStyle(
+                      color: Colors.grey,
+                    ),
+                  ),
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                style: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
               ),
-            ),
-            // 仮置のボタン
-            RaisedButton(
-              child: Text(
-                "ツイートする(仮)",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              color: twitterColor,
-              shape: StadiumBorder(),
-              onPressed: () {
-                Scaffold.of(context).showSnackBar(
-                  SnackBar(content: Text(_tweetEditingController.text)),
-                );
-              },
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
-
-  void postTweetForm() {
-    Scaffold.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Processing Data'),
-      ),
-    );
-  }
-}
-
-class TweetPostForm extends StatefulWidget {
-  TweetPostForm({Key key}) : super(key: key);
-
-  @override
-  State<TweetPostForm> createState() => TweetPostFormState();
 }
