@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:document/core/db/database_helper.dart';
 
 class SqflitePage extends StatelessWidget {
-  final Color color; // 使ってない
-  final String title; // 使ってない
-
-  SqflitePage({Key key, this.color, this.title}) : super(key: key);
+  SqflitePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +75,6 @@ class SearchPage extends StatelessWidget {
     // Assuming that the number of rows is the id for the last row.
     final id = await dbHelper.queryRowCount();
     final rowsDeleted = await dbHelper.delete(id);
-    print('deleted$rowsDeleted  row(s): row $id');
+    print('deleted $rowsDeleted  row(s): row $id');
   }
 }
