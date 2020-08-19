@@ -1,3 +1,4 @@
+import 'package:document/pages/root/test.dart';
 import 'package:flutter/material.dart';
 import 'package:document/colors.dart';
 import 'package:document/pages/root/timeline.dart';
@@ -11,8 +12,8 @@ class RootWidget extends StatefulWidget {
 class _RootWidgetState extends State<RootWidget> {
   int _bottomNaviCurrentIndex = 0;
   final _pageWidgets = [
-    TimeLine(color: Colors.white, title: 'Timeline'), // replace: done 引数使ってない
-    PageWidget(color: Colors.blue, title: 'Search'),
+    TimeLine(),
+    SearchPage(),
     PageWidget(color: Colors.yellow, title: 'Notice'),
     PageWidget(color: Colors.orange, title: 'DM'),
   ];

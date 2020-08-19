@@ -3,10 +3,7 @@ import 'package:document/colors.dart';
 import 'package:document/core/model/tweet.dart';
 
 class TimeLine extends StatelessWidget {
-  final Color color; // 使っていない
-  final String title; // 使っていない
-
-  TimeLine({Key key, this.color, this.title}) : super(key: key);
+  TimeLine({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
