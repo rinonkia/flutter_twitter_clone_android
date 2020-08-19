@@ -47,6 +47,7 @@ class DBProvider {
     var res = await db.query(_tableName);
     List<TweetDraft> list =
         res.isNotEmpty ? res.map((c) => TweetDraft.fromMap(c)).toList() : [];
+    return list;
   }
 
   deleteTodo(String id) async {
