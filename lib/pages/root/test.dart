@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:document/core/db/db_provider.dart';
+import 'package:document/core/db/sqflite_repository.dart';
+import 'package:flutter/material.dart';
 
 class SqflitePage extends StatelessWidget {
   SqflitePage({Key key}) : super(key: key);
@@ -12,7 +13,7 @@ class SqflitePage extends StatelessWidget {
 
 class SearchPage extends StatelessWidget {
   // reference to our single class that manages the database
-  final dbHelper = DBProvider.instance;
+  final sqfliteRepository = SqfliteRepository(table: 'my_table');
 
   // layout
   @override
@@ -50,12 +51,12 @@ class SearchPage extends StatelessWidget {
       DBProvider.columnName: 'Bob',
       DBProvider.columnAge: 23,
     };
-    final id = await dbHelper.insert(row);
-    print('insered row id: $id');
+    final id = await sqfliteRepository.insert(row);
+    print('inserted row id: $id');
   }
 
   void _query() async {
-    final allRows = await dbHelper.queryAllRows();
+    final allRows = await sqfliteRepository.queryAllRows();
     print('query all rows:');
     allRows.forEach((row) => print(row));
   }
@@ -67,14 +68,15 @@ class SearchPage extends StatelessWidget {
       DBProvider.columnName: 'Mary',
       DBProvider.columnAge: 32
     };
-    final rowsAffected = await dbHelper.update(row);
+    int id = 1;
+    final rowsAffected = await sqfliteRepository.update(id, row);
     print('updated $rowsAffected row(s)');
   }
 
   void _delete() async {
     // Assuming that the number of rows is the id for the last row.
-    final id = await dbHelper.queryRowCount();
-    final rowsDeleted = await dbHelper.delete(id);
+    final id = await sqfliteRepository.queryRowCount();
+    final rowsDeleted = await sqfliteRepository.delete(id);
     print('deleted $rowsDeleted  row(s): row $id');
   }
 }
