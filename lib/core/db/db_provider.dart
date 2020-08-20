@@ -4,7 +4,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 
-class DatabaseHelper {
+class DBProvider {
   static final _databaseName = "MyDatabase.db";
   static final _databaseVersion = 1;
 
@@ -14,8 +14,8 @@ class DatabaseHelper {
   static final columnAge = 'age';
 
   // make this singleton class
-  DatabaseHelper._privateConstructor();
-  static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
+  DBProvider._privateConstructor();
+  static final DBProvider instance = DBProvider._privateConstructor();
 
   // only have a single app-wide reference to the database
   static Database _database;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:document/core/db/database_helper.dart';
+import 'package:document/core/db/db_provider.dart';
 
 class SqflitePage extends StatelessWidget {
   SqflitePage({Key key}) : super(key: key);
@@ -12,7 +12,7 @@ class SqflitePage extends StatelessWidget {
 
 class SearchPage extends StatelessWidget {
   // reference to our single class that manages the database
-  final dbHelper = DatabaseHelper.instance;
+  final dbHelper = DBProvider.instance;
 
   // layout
   @override
@@ -47,8 +47,8 @@ class SearchPage extends StatelessWidget {
   void _insert() async {
     // row to insert
     Map<String, dynamic> row = {
-      DatabaseHelper.columnName: 'Bob',
-      DatabaseHelper.columnAge: 23,
+      DBProvider.columnName: 'Bob',
+      DBProvider.columnAge: 23,
     };
     final id = await dbHelper.insert(row);
     print('insered row id: $id');
@@ -63,9 +63,9 @@ class SearchPage extends StatelessWidget {
   void _update() async {
     // row to update
     Map<String, dynamic> row = {
-      DatabaseHelper.columnId: 1,
-      DatabaseHelper.columnName: 'Mary',
-      DatabaseHelper.columnAge: 32
+      DBProvider.columnId: 1,
+      DBProvider.columnName: 'Mary',
+      DBProvider.columnAge: 32
     };
     final rowsAffected = await dbHelper.update(row);
     print('updated $rowsAffected row(s)');
