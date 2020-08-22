@@ -39,13 +39,13 @@ class SqfliteRepository {
   // column values will be used to update the row.
   Future<int> update(int id, Map<String, dynamic> row) async {
     Database db = await provider.database;
-    return await db.update(table, row, where: '_id = ?', whereArgs: [id]);
+    return await db.update(table, row, where: 'id = ?', whereArgs: [id]);
   }
 
   // Deletes the row specified by the id. The number of affected rows is
   // returned. This should be 1 as long as the row exists.
   Future<int> delete(int id) async {
     Database db = await provider.database;
-    return await db.delete(table, where: '_id = ?', whereArgs: [id]);
+    return await db.delete(table, where: 'id = ?', whereArgs: [id]);
   }
 }

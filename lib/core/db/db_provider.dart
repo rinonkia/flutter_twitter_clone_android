@@ -6,12 +6,7 @@ import 'package:path_provider/path_provider.dart';
 
 class DBProvider {
   final _databaseName = "MyDatabase.db";
-  final _databaseVersion = 1;
-
-  static final table = 'my_table'; // 削除して良さそう
-  static final columnId = '_id';
-  static final columnName = 'name';
-  static final columnAge = 'age';
+  final _databaseVersion = 2;
 
   // make this singleton class
   DBProvider._();
@@ -26,6 +21,26 @@ class DBProvider {
     return _database;
   }
 
+  void _createTableMyTableV2(Batch batch) {
+    batch.execute('DROP TABLE IF EXISTS my_table');
+    batch.execute('''
+    CREATE TABLE my_table(
+      id INTEGER PRIMARY KEY,
+      name TEXT NOT NULL,
+      age INTEGER NOT NULL
+    ) ''');
+  }
+
+  void _createTableTweetDraftV2(Batch batch) {
+    batch.execute('DROP TABLE IF EXISTS tweet_draft');
+    batch.execute('''
+    CREATE TABLE tweet_draft(
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      body TEXT NOT NULL,
+      created_at TEXT NOT NULL
+    ) ''');
+  }
+
   //this opens the database (and creates it if it doesn't exist)
   _initDatabase() async {
     final Directory documentsDirectory =
@@ -34,17 +49,21 @@ class DBProvider {
     return await openDatabase(
       path,
       version: _databaseVersion,
-      onCreate: _onCreate,
+      onCreate: (db, version) async {
+        var batch = db.batch();
+        _createTableMyTableV2(batch);
+        _createTableTweetDraftV2(batch);
+        await batch.commit();
+      },
+      onUpgrade: (db, oldVersion, newVersion) async {
+        var batch = db.batch();
+        if (oldVersion == 1) {
+          _createTableMyTableV2(batch);
+          _createTableTweetDraftV2(batch);
+        }
+        await batch.commit();
+      },
+      onDowngrade: onDatabaseDowngradeDelete,
     );
-  }
-
-  // SQL code to create the database table
-  Future _onCreate(Database db, int version) async {
-    await db.execute('''
-    CREATE TABLE $table (
-      $columnId INTEGER PRIMARY KEY,
-      $columnName TEXT NOT NULL,
-      $columnAge INTEGER NOT NULL
-    )''');
   }
 }

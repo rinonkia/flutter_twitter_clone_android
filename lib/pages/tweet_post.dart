@@ -1,3 +1,4 @@
+import 'package:document/core/db/sqflite/tweet_draft_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:document/colors.dart';
 
@@ -46,7 +47,11 @@ class TweetPostState extends State<TweetPost> {
               color: twitterColor,
               shape: StadiumBorder(),
               onPressed: () {
-                print(_tweetEditingController.text);
+                final repository = TweetDraftRepository();
+                repository.create({
+                  'body': _tweetEditingController.text,
+                  'created_at': '2020-10-10 00:00:00'
+                });
               },
             ),
           ],
