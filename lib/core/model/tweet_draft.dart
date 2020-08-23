@@ -31,6 +31,6 @@ class TweetDraft {
   factory TweetDraft.fromMap(Map<String, dynamic> json) => TweetDraft(
         id: json["id"],
         body: json["body"],
-        createdAt: json["createdAt"],
+        createdAt: json["created_at"],
       );
 }
