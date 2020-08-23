@@ -19,7 +19,6 @@ class TweetDraftPage extends StatelessWidget {
         child: FutureBuilder(
           future: repository.getAll(),
           builder: (context, projectSnap) {
-            print(projectSnap);
             if (projectSnap.connectionState == ConnectionState.none &&
                 projectSnap.hasData == null) {
               print('projectc snapshot data is: ${projectSnap.data}');
@@ -28,7 +27,6 @@ class TweetDraftPage extends StatelessWidget {
             return ListView.builder(
               itemCount: projectSnap.data.length,
               itemBuilder: (BuildContext context, int index) {
-                print('index: $index');
                 return _tweetDraftContent(projectSnap.data[index]);
               },
             );
