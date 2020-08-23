@@ -70,7 +70,11 @@ class TweetDraftPage extends StatelessWidget {
                   ),
                 ),
                 SimpleDialogOption(
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () {
+                    final repository = TweetDraftRepository();
+                    repository.delete(tweet.getId);
+                    Navigator.pop(context);
+                  },
                   child: Text(
                     "下書きを削除",
                     style: TextStyle(

@@ -32,4 +32,10 @@ class TweetDraftRepository {
 
     return TweetDraft.fromMap(rows.first);
   }
+
+  Future<int> delete(int id) async {
+    final rowsDeleted = await sqfliteRepository.delete(id);
+    print('deleted $rowsDeleted row(s): row $id');
+    return rowsDeleted;
+  }
 }
