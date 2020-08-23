@@ -27,7 +27,7 @@ class TweetDraftPage extends StatelessWidget {
             return ListView.builder(
               itemCount: projectSnap.data.length,
               itemBuilder: (BuildContext context, int index) {
-                return _tweetDraftContent(projectSnap.data[index]);
+                return _tweetDraftContent(context, projectSnap.data[index]);
               },
             );
           },
@@ -36,7 +36,7 @@ class TweetDraftPage extends StatelessWidget {
     );
   }
 
-  Widget _tweetDraftContent(TweetDraft tweet) {
+  Widget _tweetDraftContent(BuildContext context, TweetDraft tweet) {
     return Container(
       padding: EdgeInsets.all(15.0),
       decoration: BoxDecoration(
@@ -53,7 +53,36 @@ class TweetDraftPage extends StatelessWidget {
           ),
         ),
         onTap: () => print('select text'),
-        onLongPress: () => print('arise popup'),
+        onLongPress: () => showDialog(
+          context: context,
+          builder: (context) {
+            return SimpleDialog(
+              backgroundColor: darkColor,
+              children: <Widget>[
+                SimpleDialogOption(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text(
+                    "下書きを編集",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                ),
+                SimpleDialogOption(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text(
+                    "下書きを削除",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
