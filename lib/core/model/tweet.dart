@@ -14,6 +14,6 @@ class Tweet {
   final String pictureUrl;
 
   String get getUserName => '$userName';
-  String get getrBody => '$body';
+  String get getBody => '$body';
   String get getrPictureUrl => '$pictureUrl';
 }

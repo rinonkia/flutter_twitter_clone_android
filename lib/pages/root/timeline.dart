@@ -81,7 +81,7 @@ class TimeLine extends StatelessWidget {
                     ),
                     SizedBox(width: 8.0),
                     Text(
-                      tweet.getrBody,
+                      tweet.getBody,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18.0,
