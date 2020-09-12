@@ -47,8 +47,7 @@ class TweetPostState extends State<TweetPost> {
               color: twitterColor,
               shape: StadiumBorder(),
               onPressed: () {
-                final repository = TweetDraftRepository();
-                repository.create({
+                TweetDraftRepository.create({
                   'body': _tweetEditingController.text,
                   'created_at': '2020-10-10 00:00:00'
                 });

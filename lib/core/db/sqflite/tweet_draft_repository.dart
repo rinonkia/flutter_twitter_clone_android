@@ -5,7 +5,7 @@ class TweetDraftRepository {
   static String table = 'tweet_draft';
   static final sqfliteRepository = SqfliteRepository(table: table);
 
-  Future<TweetDraft> create(Map<String, dynamic> row,
+  static Future<TweetDraft> create(Map<String, dynamic> row,
       {body, String createdAt}) async {
     final db = await sqfliteRepository.provider.database;
     final id = await db.insert(table, row);
