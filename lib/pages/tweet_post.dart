@@ -1,4 +1,5 @@
 import 'package:document/core/db/sqflite/tweet_draft_repository.dart';
+import 'package:document/core/model/tweet_draft.dart';
 import 'package:flutter/material.dart';
 import 'package:document/colors.dart';
 
@@ -13,7 +14,14 @@ class TweetPost extends StatefulWidget {
 }
 
 class TweetPostState extends State<TweetPost> {
-  final _tweetEditingController = TextEditingController();
+  TextEditingController _textEditingController;
+
+  @override
+  void initState() {
+    super.initState();
+    _textEditingController = TextEditingController();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +30,12 @@ class TweetPostState extends State<TweetPost> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             GestureDetector(
-              onTap: () {
-                Navigator.of(context).pushNamed("/tweet_draft");
+              onTap: () async {
+                var draft =
+                    await Navigator.of(context).pushNamed("/tweet_draft");
+                if (draft != null) {
+                  setState(() => _textEditingController.text = draft);
+                }
               },
               child: Text(
                 "下書き",
@@ -48,7 +60,7 @@ class TweetPostState extends State<TweetPost> {
               shape: StadiumBorder(),
               onPressed: () {
                 TweetDraftRepository.create({
-                  'body': _tweetEditingController.text,
+                  'body': _textEditingController.text,
                   'created_at': '2020-10-10 00:00:00'
                 });
               },
@@ -71,7 +83,7 @@ class TweetPostState extends State<TweetPost> {
               ),
               Flexible(
                 child: TextFormField(
-                  controller: _tweetEditingController,
+                  controller: _textEditingController,
                   autofocus: true,
                   expands: true,
                   keyboardType: TextInputType.multiline,
