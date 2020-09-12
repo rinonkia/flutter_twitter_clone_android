@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:document/colors.dart';
+import 'package:document/colors.dart';
 import 'package:document/core/model/tweet_draft.dart';
 import 'package:document/core/db/sqflite/tweet_draft_repository.dart';
 
@@ -27,7 +27,11 @@ class _TweetDraftPageState extends State<TweetDraftPage> {
       },
     );
     return Scaffold(
-      appBar: AppBar(title: Text("Text List")),
+      appBar: AppBar(
+        title: Text("下書き"),
+        backgroundColor: darkColor,
+      ),
+      backgroundColor: darkColor,
       body: futureBuilder,
     );
   }
@@ -41,7 +45,10 @@ class _TweetDraftPageState extends State<TweetDraftPage> {
         return Column(
           children: <Widget>[
             ListTile(
-              title: Text(tweetDraft.getBody),
+              title: Text(
+                tweetDraft.getBody,
+                style: TextStyle(color: Colors.white, fontSize: 18.0),
+              ),
               onTap: () {
                 final draftBody = tweetDraft.getBody;
                 TweetDraftRepository.delete(tweetDraft.getId);
@@ -51,7 +58,7 @@ class _TweetDraftPageState extends State<TweetDraftPage> {
                 context: context,
                 builder: (context) {
                   return SimpleDialog(
-                    backgroundColor: Colors.grey,
+                    backgroundColor: darkColor,
                     children: <Widget>[
                       SimpleDialogOption(
                         onPressed: () {
@@ -73,7 +80,6 @@ class _TweetDraftPageState extends State<TweetDraftPage> {
                         onPressed: () {
                           setState(() {
                             TweetDraftRepository.delete(tweetDraft.id);
-                            print('deleted');
                             Navigator.of(context).pop();
                           });
                         },
