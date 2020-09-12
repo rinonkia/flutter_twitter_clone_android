@@ -3,7 +3,7 @@ import 'package:document/core/db/sqflite_repository.dart';
 
 class TweetDraftRepository {
   static String table = 'tweet_draft';
-  final sqfliteRepository = SqfliteRepository(table: table);
+  static final sqfliteRepository = SqfliteRepository(table: table);
 
   Future<TweetDraft> create(Map<String, dynamic> row,
       {body, String createdAt}) async {
@@ -17,7 +17,7 @@ class TweetDraftRepository {
     );
   }
 
-  Future<List<TweetDraft>> getAll() async {
+  static Future<List<TweetDraft>> getAll() async {
     final db = await sqfliteRepository.provider.database;
     final rows = await db.rawQuery('SELECT * FROM $table ORDER BY id DESC');
     if (rows.isEmpty) return null;
@@ -25,7 +25,7 @@ class TweetDraftRepository {
     return rows.map((e) => TweetDraft.fromMap(e)).toList();
   }
 
-  Future<TweetDraft> single(int id) async {
+  static Future<TweetDraft> single(int id) async {
     final db = await sqfliteRepository.provider.database;
     final rows = await db.rawQuery('SELECT * FROM $table WHERE id = ?', [id]);
     if (rows.isEmpty) return null;
@@ -33,7 +33,7 @@ class TweetDraftRepository {
     return TweetDraft.fromMap(rows.first);
   }
 
-  Future<int> delete(int id) async {
+  static Future<int> delete(int id) async {
     final rowsDeleted = await sqfliteRepository.delete(id);
     print('deleted $rowsDeleted row(s): row $id');
     return rowsDeleted;
