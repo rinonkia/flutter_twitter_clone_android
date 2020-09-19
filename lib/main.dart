@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:document/pages/root_widget.dart';
 import 'package:document/pages/home.dart';
+import 'package:document/pages/register.dart';
+import 'package:document/pages/login.dart';
 import 'package:document/pages/tweet_post.dart';
 import 'package:document/pages/tweet_draft.dart';
 
@@ -16,6 +18,8 @@ class MyApp extends StatelessWidget {
       home: RootWidget(),
       routes: <String, WidgetBuilder>{
         '/root': (BuildContext context) => HomePage(),
+        '/register': (BuildContext context) => RegisterPage(),
+        '/login': (BuildContext context) => LoginPage(),
         '/tweet_post': (BuildContext context) => TweetPost(),
         '/tweet_draft': (BuildContext context) => TweetDraftPage(),
       },
