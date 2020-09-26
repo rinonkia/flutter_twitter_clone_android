@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Twitter Clone',
       home: RootWidget(),
       routes: <String, WidgetBuilder>{
-        '/root': (BuildContext context) => HomePage(),
+        '/home': (BuildContext context) => HomePage(),
         '/register': (BuildContext context) => RegisterPage(),
         '/login': (BuildContext context) => LoginPage(),
         '/tweet_post': (BuildContext context) => TweetPost(),

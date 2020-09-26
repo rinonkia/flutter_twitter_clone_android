@@ -13,7 +13,8 @@ class _RootWidgetState extends State<RootWidget> {
   @override
   initState() {
     var currentUser = FirebaseAuth.instance.currentUser;
-    if (currentUser = null) {
+    print(currentUser);
+    if (currentUser == null) {
       Navigator.pushReplacementNamed(context, "/login");
     }
 
