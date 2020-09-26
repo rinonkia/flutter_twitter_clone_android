@@ -12,33 +12,19 @@ class RootWidget extends StatefulWidget {
 class _RootWidgetState extends State<RootWidget> {
   @override
   initState() {
-    FirebaseAuth.instance
-        .currentUser()
-        .then((currentUser) => {
-              if (currentUser == null)
-                {
-                  Navigator.pushReplacementNamed(context, "/login"),
-                }
-              else
-                {
-                  Firestore.instance
-                      .collection("users")
-                      .document(currentUser.uid)
-                      .get()
-                      .then(
-                        (DocumentSnapshot result) => Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HomePage(
-                                // uid: currentUser.uid,
-                                ),
-                          ),
-                        ),
-                      )
-                      .catchError((err) => print(err))
-                }
-            })
+    var currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser = null) {
+      Navigator.pushReplacementNamed(context, "/login");
+    }
+
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(currentUser.uid)
+        .get()
+        .then((DocumentSnapshot result) => Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => HomePage())))
         .catchError((err) => print(err));
+
     super.initState();
   }
 

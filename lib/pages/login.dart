@@ -98,9 +98,9 @@ class _LoginPageState extends State<LoginPage> {
                           password: pwdInputController.text,
                         )
                         .then(
-                          (currentUser) => Firestore.instance
+                          (currentUser) => FirebaseFirestore.instance
                               .collection("users")
-                              .document(currentUser.user.uid)
+                              .doc(currentUser.user.uid)
                               .get()
                               .then(
                                 (DocumentSnapshot result) =>

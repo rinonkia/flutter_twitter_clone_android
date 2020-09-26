@@ -40,11 +40,12 @@ class _RegisterPageState extends State<RegisterPage> {
                 onPressed: () async {
                   try {
                     final FirebaseAuth auth = FirebaseAuth.instance;
-                    final AuthResult result =
-                        await auth.createUserWithEmailAndPassword(
-                            email: newUserEmail, password: newUserPassword);
+                    final result = await auth.createUserWithEmailAndPassword(
+                      email: newUserEmail,
+                      password: newUserPassword,
+                    );
 
-                    final FirebaseUser user = result.user;
+                    final user = result.user;
                     setState(() {
                       infoText = "登録OK: ${user.email}";
                     });
