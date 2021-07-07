@@ -1,5 +1,4 @@
 import 'package:document/core/db/sqflite/tweet_draft_repository.dart';
-import 'package:document/core/model/tweet_draft.dart';
 import 'package:flutter/material.dart';
 import 'package:document/colors.dart';
 
